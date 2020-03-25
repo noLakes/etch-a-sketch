@@ -1,0 +1,19 @@
+.gridCell {
+    background-color: beige;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+}
+
+#grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 720px;
+    height: 720px;
+
+}
+
+#button {
+    position: relative;
+    top: 50px;
+}
