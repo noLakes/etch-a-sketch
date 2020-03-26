@@ -16,6 +16,14 @@ html {
     height: 656px;
     position: relative;
     left: 20%;
+}
 
+#display {
+    position: fixed;
+    background-color: lightcoral;
+    bottom: 0px;
+    top: 0px;
+    left: 0%;
+    padding-right: 50px;
 }
 

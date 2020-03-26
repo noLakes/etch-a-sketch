@@ -1,28 +1,7 @@
+const display = document.querySelector("#display");
 const grid = document.querySelector("#grid");
-let cellWidth = 0;
-let cellHeight = 0;
 let gridDimensions = 16;
 
-function createGrid(width, height) {
-    gridDimensions = width;
-    cellWidth = 720/width - 2;
-    cellHeight = 656/height - 2;
-    for (i = 1; i <= (width * height); i++) {
-        let gridCell = document.createElement('div');
-        gridCell.setAttribute("id", "gridCell-" + i)
-        gridCell.setAttribute("class", "gridCell")
-        gridCell.style.width = cellWidth + "px";
-        gridCell.style.height = cellHeight + "px";
-        gridCell.addEventListener("mouseover", function() {
-            gridCell.style.backgroundColor = "lightGrey";
-        })
-        grid.appendChild(gridCell);
-    } 
-}
-
-createGrid(16, 16);
-
-const body = document.querySelector("body");
 const gridButton = document.createElement("button");
 gridButton.setAttribute("id", "gridButton");
 gridButton.textContent = "Grid Size";
@@ -40,7 +19,7 @@ gridButton.addEventListener("click", function(){
     }
     })
 
-body.appendChild(gridButton);
+display.appendChild(gridButton);
 
 const clearButton = document.createElement("button");
 clearButton.setAttribute("id", "clearButton");
@@ -53,9 +32,35 @@ clearButton.addEventListener("click", function() {
     }
     createGrid(gridDimensions, gridDimensions);
 })
-body.appendChild(clearButton);
+display.appendChild(clearButton);
+
+function createGrid(width, height) {
+    gridDimensions = width;
+    let cellWidth = 720/width - 2;
+    let cellHeight = 656/height - 2;
+    for (i = 1; i <= (width * height); i++) {
+        let gridCell = document.createElement('div');
+        gridCell.setAttribute("id", "gridCell-" + i)
+        gridCell.setAttribute("class", "gridCell")
+        gridCell.style.width = cellWidth + "px";
+        gridCell.style.height = cellHeight + "px";
+        gridCell.addEventListener("mouseover", function() {
+            gridCell.style.backgroundColor = getRandomColor();
+        })
+        grid.appendChild(gridCell);
+    } 
+}
+createGrid(16, 16);
 
 function count(selector) {
     return selector.childElementCount;
 }
 console.log("grid size: " + count(grid));
+
+function getRandomColor() {
+    function c() {
+      let hex = Math.floor(Math.random()*256).toString(16);
+      return ("0"+String(hex)).substr(-2); // pad with zero
+    }
+    return "#"+c()+c()+c();
+  }
