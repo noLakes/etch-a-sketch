@@ -1,8 +1,10 @@
 const grid = document.querySelector("#grid");
 let cellWidth = 0;
 let cellHeight = 0;
+let gridDimensions = 16;
 
 function createGrid(width, height) {
+    gridDimensions = width;
     cellWidth = 720/width - 2;
     cellHeight = 656/height - 2;
     for (i = 1; i <= (width * height); i++) {
@@ -26,24 +28,34 @@ gridButton.setAttribute("id", "gridButton");
 gridButton.textContent = "Grid Size";
 
 gridButton.addEventListener("click", function(){
-    let newGridDimensions = prompt("New grid dimensions?");
-    if (newGridDimensions != null && newGridDimensions != "") {
+    gridDimensions = prompt("New grid dimensions?");
+    if (gridDimensions != null && gridDimensions != "") {
         let child = grid.lastElementChild;
         while (child) {
             grid.removeChild(child);
             child = grid.lastElementChild;
         }
-        createGrid(newGridDimensions, newGridDimensions);
+        createGrid(gridDimensions, gridDimensions);
+        console.log("grid size: " + count(grid));
     }
     })
 
 body.appendChild(gridButton);
 
-
+const clearButton = document.createElement("button");
+clearButton.setAttribute("id", "clearButton");
+clearButton.textContent = "Clear";
+clearButton.addEventListener("click", function() {
+    let child = grid.lastElementChild;
+    while (child) {
+        grid.removeChild(child);
+        child = grid.lastElementChild;
+    }
+    createGrid(gridDimensions, gridDimensions);
+})
+body.appendChild(clearButton);
 
 function count(selector) {
     return selector.childElementCount;
 }
-console.log(count(grid));
-
-document.addEventListener()
+console.log("grid size: " + count(grid));
