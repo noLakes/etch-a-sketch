@@ -15,15 +15,29 @@ html {
     width: 720px;
     height: 656px;
     position: relative;
-    left: 20%;
+    left: 10%;
+    top: 4px;
 }
 
 #display {
-    position: fixed;
-    background-color: lightcoral;
-    bottom: 0px;
-    top: 0px;
-    left: 0%;
-    padding-right: 50px;
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    left: 80px;
 }
 
+#main {
+    display: flex;
+    justify-content: flex-start;
+}
+
+button {
+    margin: 10px;
+    width: 175px;
+    height: 75px;
+    font-size: 200%;
+    border-radius: 15%;
+    background: #b5baee;
+    position: relative;
+    top: 30%;
+}
